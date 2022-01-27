@@ -2,6 +2,11 @@ html {
     height: 100%;
 }
 
+h1 {
+    font-family: 'Mochiy Pop P One', sans-serif;
+    color: #FF7F50;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -10,6 +15,7 @@ body {
     margin: 0px;
     padding: 0px;
     min-height: 100%;
+    background-image: url("./img/fabricBackground.png");
 }
 .userInputs {
     margin:auto;
