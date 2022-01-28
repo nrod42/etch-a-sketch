@@ -23,6 +23,7 @@ body {
 
 .grid {
     margin: auto;
+    margin-top: 0;
 }
 
 .row {

@@ -1,13 +1,17 @@
 const body = document.querySelector('body');
 const grid = document.querySelector('.grid');
 const clearBtn = document.querySelector('.clearBtn')
-const randomColorBtn = document.querySelector('.randomColorBtn')
 const chooseColorBtn = document.querySelector('.chooseColorBtn')
+const userColor = document.querySelector('.userColor')
+const randomColorBtn = document.querySelector('.randomColorBtn')
 const rainbowColorBtn = document.querySelector('.rainbowColorBtn')
+const darkBtn = document.querySelector('darkBtn')
+const eraserBtn = document.querySelector('.eraseBtn')
+
 let allCells;
-gridGenerator(16);
 let color = 'black';
-chooseColor(color);
+
+gridGenerator(16);
 
 function gridGenerator (gridSize) {
     //Creates a grid div of fixed size
@@ -36,10 +40,6 @@ function gridGenerator (gridSize) {
             row.appendChild(cell);
         }
     }
-    
-}
-
-function chooseColor (color) {
     allCells = document.querySelectorAll('.cell');
     allCells.forEach(cell => {
         cell.addEventListener('mouseover', event => {
@@ -49,19 +49,25 @@ function chooseColor (color) {
 }
 
 function randomColor () {
-    color =  '#' + Math.floor(Math.random()*16777215).toString(16);
-    return color;
+    return color =  '#' + Math.floor(Math.random()*16777215).toString(16);
 }
 
-function rainbowColor () {
-    let allCells = document.querySelectorAll('.cell');
+/*function darkColor () {
+    allCells.forEach(cell => {
+        cell.addEventListener('mouseover', event => {
+            event.target.style.backgroundColor = 'brightness(10%)'
+        })
+    })
+}*/
+
+/*function rainbowColor () {
     allCells.forEach(cell => {
         cell.addEventListener('mouseover', event => {
             event.target.style.backgroundColor = randomColor();
         })
     })
-}
-
+}*/
+    
 //Asks user for new grid size then deletes and replaces old grid with new user grid
 function clear () {
     let userSize = prompt("Enter a grid size between 1 and 100:");
@@ -70,23 +76,24 @@ function clear () {
     while (userSize < 1 || userSize > 100 || isNaN(userSize)) {
         userSize = parseInt(prompt("Not valid!\nEnter a grid size between 1 and 100:"), 10);
     }
-    //Deletes old grid then creates new one based on new inputed grid size
+    //Deletes existing grid
     while (grid.firstChild) {
         grid.removeChild(grid.firstChild);
     }
+    //New grid with user size created
     gridGenerator(userSize);
-    chooseColor(color);
 }
 
-chooseColorBtn.addEventListener('click', function(e) {
-    color = prompt('Enter color:');
-    chooseColor(color);
-})
+chooseColorBtn.addEventListener('click', () => color = userColor.value);
 
-randomColorBtn.addEventListener('click', function(e) {
-    chooseColor(randomColor());
-})
+randomColorBtn.addEventListener('click', randomColor);
 
-rainbowColorBtn.addEventListener('click', rainbowColor);
+eraserBtn.addEventListener('click', () => color = "white");
 
 clearBtn.addEventListener('click', clear);
+
+//darkBtn.addEventListener('click', () => color = color.style.webkit
+
+//rainbowColorBtn.addEventListener('click', rainbowColor);
+
+// IMPORTANT DOOFUS, when u run rainbowColor, it is overriding the event listeners we added before so the other buttons besisedss clear wont work!
