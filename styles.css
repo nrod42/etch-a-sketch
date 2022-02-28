@@ -17,8 +17,13 @@ body {
     min-height: 100%;
     background-image: url("./img/fabricBackground.png");
 }
+
 .userInputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin:auto;
+    padding: 10px;;
 }
 
 .grid {
@@ -35,4 +40,12 @@ body {
     border-width: 1px;
     border-color: gray;
     border-radius: 5px;
+}
+
+.buttonDiv {
+    margin: 5px;
+}
+
+button, input {
+    height: 25px;
 }

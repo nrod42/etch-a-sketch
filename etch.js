@@ -1,15 +1,13 @@
 const body = document.querySelector('body');
 const grid = document.querySelector('.grid');
 const clearBtn = document.querySelector('.clearBtn')
-const chooseColorBtn = document.querySelector('.chooseColorBtn')
 const userColor = document.querySelector('.userColor')
 const randomColorBtn = document.querySelector('.randomColorBtn')
-const rainbowColorBtn = document.querySelector('.rainbowColorBtn')
-const darkBtn = document.querySelector('darkBtn')
 const eraserBtn = document.querySelector('.eraseBtn')
 
 let allCells;
 let color = 'black';
+let opacity = 0;
 
 gridGenerator(16);
 
@@ -48,25 +46,20 @@ function gridGenerator (gridSize) {
     })
 }
 
+userColor.addEventListener('input', function() {
+    color = userColor.value;
+}, false);
+
+randomColorBtn.addEventListener('click', randomColor);
+
+eraserBtn.addEventListener('click', () => color = "white");
+
+clearBtn.addEventListener('click', clear);
+
+
 function randomColor () {
     return color =  '#' + Math.floor(Math.random()*16777215).toString(16);
 }
-
-/*function darkColor () {
-    allCells.forEach(cell => {
-        cell.addEventListener('mouseover', event => {
-            event.target.style.backgroundColor = 'brightness(10%)'
-        })
-    })
-}*/
-
-/*function rainbowColor () {
-    allCells.forEach(cell => {
-        cell.addEventListener('mouseover', event => {
-            event.target.style.backgroundColor = randomColor();
-        })
-    })
-}*/
     
 //Asks user for new grid size then deletes and replaces old grid with new user grid
 function clear () {
@@ -83,17 +76,3 @@ function clear () {
     //New grid with user size created
     gridGenerator(userSize);
 }
-
-chooseColorBtn.addEventListener('click', () => color = userColor.value);
-
-randomColorBtn.addEventListener('click', randomColor);
-
-eraserBtn.addEventListener('click', () => color = "white");
-
-clearBtn.addEventListener('click', clear);
-
-//darkBtn.addEventListener('click', () => color = color.style.webkit
-
-//rainbowColorBtn.addEventListener('click', rainbowColor);
-
-// IMPORTANT DOOFUS, when u run rainbowColor, it is overriding the event listeners we added before so the other buttons besisedss clear wont work!
