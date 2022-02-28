@@ -1,5 +1,8 @@
 html {
     height: 100%;
+    font-family: sans-serif;
+    color: royalblue;
+    font-family: 'Mochiy Pop P One', sans-serif;
 }
 
 h1 {
@@ -47,5 +50,9 @@ body {
 }
 
 button, input {
-    height: 25px;
+    height: 30px;
+    border: 1px black solid;
+    border-radius: 5px;
+    font-family: 'Mochiy Pop P One', sans-serif;
+    color: royalblue
 }
